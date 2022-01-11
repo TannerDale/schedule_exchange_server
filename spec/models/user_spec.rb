@@ -14,6 +14,6 @@ describe User do
   end
 
   describe 'enums' do
-    it { should define_enum_for(:role).with_values(%i[employee supervisor manager]) }
+    it { should define_enum_for(:role).with_values %i[employee supervisor manager] }
   end
 end
