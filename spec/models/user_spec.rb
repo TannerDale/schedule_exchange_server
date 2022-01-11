@@ -9,6 +9,10 @@ describe User do
     it { should validate_presence_of :password }
   end
 
+  describe 'relationships' do
+    it { should belong_to :company }
+  end
+
   describe 'enums' do
     it { should define_enum_for(:role).with_values(%i[employee supervisor manager]) }
   end

@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
 
   enum role: %i[employee supervisor manager]
+
+  belongs_to :company
 end
