@@ -82,7 +82,6 @@ describe 'User Request' do
     end
 
     context 'with invalid params' do
-
       context 'invalid first name' do
         before :each do
           valid_params.delete(:first_name)
