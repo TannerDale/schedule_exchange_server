@@ -1,8 +1,12 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  def create
-    @user = User.create!(user_params)
+  def show
+    user = User.find(params[:id])
+    render json: V1::UserSerializer.new(user)
+  end
 
-    render json: V1::UserSerializer.new(@user)
+  def create
+    user = User.create!(user_params)
+    render json: V1::UserSerializer.new(user)
   end
 
   private
