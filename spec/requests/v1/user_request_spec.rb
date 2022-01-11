@@ -5,6 +5,8 @@ describe 'User Request' do
   let(:data) { json[:data] }
   let(:attrs) { json[:data][:attributes] }
 
+  let(:error_details) { json[:error][:details] }
+
   describe 'GET /api/v1/users' do
     let!(:user) { create :user }
 
@@ -41,7 +43,7 @@ describe 'User Request' do
       end
 
       it 'returns an appropriate error message' do
-        expect(json[:error][:details]).to eq "Couldn't find User with 'id'=#{bad_id}"
+        expect(error_details).to eq "Couldn't find User with 'id'=#{bad_id}"
       end
     end
   end
@@ -80,6 +82,7 @@ describe 'User Request' do
     end
 
     context 'with invalid params' do
+
       context 'invalid first name' do
         before :each do
           valid_params.delete(:first_name)
@@ -92,7 +95,7 @@ describe 'User Request' do
         end
 
         it 'returns an appropriate error message' do
-          expect(json[:error][:details]).to include "Validation failed: First name can't be blank"
+          expect(error_details).to include "Validation failed: First name can't be blank"
         end
       end
 
@@ -108,7 +111,7 @@ describe 'User Request' do
         end
 
         it 'returns an appropriate error message' do
-          expect(json[:error][:details]).to include "Validation failed: Last name can't be blank"
+          expect(error_details).to include "Validation failed: Last name can't be blank"
         end
       end
 
@@ -124,7 +127,7 @@ describe 'User Request' do
         end
 
         it 'returns an appropriate error message' do
-          expect(json[:error][:details]).to include 'Validation failed: Email is invalid'
+          expect(error_details).to include 'Validation failed: Email is invalid'
         end
       end
 
@@ -140,7 +143,7 @@ describe 'User Request' do
         end
 
         it 'returns an appropriate error message' do
-          expect(json[:error][:details]).to include "Validation failed: Password can't be blank"
+          expect(error_details).to include "Validation failed: Password can't be blank"
         end
       end
 
@@ -158,7 +161,7 @@ describe 'User Request' do
         end
 
         it 'returns an appropriate error message' do
-          expect(json[:error][:details]).to include message
+          expect(error_details).to include message
         end
       end
     end
