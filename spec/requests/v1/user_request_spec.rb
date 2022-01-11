@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe 'User Request' do
-  let(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
   let(:json) { JSON.parse(response.body, symbolize_names: true) }
   let(:data) { json[:data] }
   let(:attrs) { json[:data][:attributes] }
@@ -9,8 +8,8 @@ describe 'User Request' do
   describe 'GET /api/v1/users' do
     let!(:user) { create :user }
 
-    describe 'with valid user id' do
-      before { get api_v1_users_path, params: { id: user.id }, headers: headers }
+    context 'with valid user id' do
+      before { get api_v1_users_path, params: { id: user.id } }
 
       it 'selects the requested user' do
         expect(data[:id]).to eq user.id.to_s
@@ -24,7 +23,7 @@ describe 'User Request' do
       end
     end
 
-    describe 'with invalid user id' do
+    context 'with invalid user id' do
       let(:bad_id) { user.id + 1 }
       before { get api_v1_users_path, params: { id: bad_id } }
 
