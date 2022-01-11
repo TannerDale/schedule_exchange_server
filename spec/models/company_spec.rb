@@ -7,6 +7,6 @@ describe Company do
   end
 
   describe 'relationships' do
-    it { should have_many :users }
+    it { should have_many(:users).dependent :destroy }
   end
 end

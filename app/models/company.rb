@@ -5,5 +5,5 @@ class Company < ApplicationRecord
   validates :password, presence: true
   validates :password_confirmation, presence: true, on: :create
 
-  has_many :users
+  has_many :users, dependent: :destroy
 end
