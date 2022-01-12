@@ -13,38 +13,38 @@ ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
 
-comp = Company.create(
+comp = Company.create!(
   name: 'Bob Ross Inc',
   password: 'happylittletree',
-  password_digest: 'happylittletree'
+  password_confirmation: 'happylittletree'
 )
 
-User.create(
+User.create!(
   first_name: 'Bob',
   last_name: 'Ross',
   email: 'bob_ross@painting.com',
   password: 'hello_world',
-  password_digest: 'hello_world',
+  password_confirmation: 'hello_world',
   role: 2,
   company_id: comp.id
 )
 
-User.create(
+User.create!(
   first_name: 'Luke',
   last_name: 'Skywalker',
   email: 'luke@theforce.com',
   password: 'iamajedi',
-  password_digest: 'iamajedi',
+  password_confirmation: 'iamajedi',
   role: 1,
   company_id: comp.id
 )
 
-User.create(
+User.create!(
   first_name: 'Bobba',
   last_name: 'Fett',
   email: 'simple_man@likemyfather.com',
   password: 'makingwaythroughgalaxy',
-  password_digest: 'makingwaythroughgalaxy',
+  password_confirmation: 'makingwaythroughgalaxy',
   role: 0,
   company_id: comp.id
 )
