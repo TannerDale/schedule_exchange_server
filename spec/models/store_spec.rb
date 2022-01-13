@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe Store do
   describe 'validations' do
-    let!(:company) { create :company }
-    let!(:store) { Store.create(street_address: '123', zip_code: 1, store_number: 1, company_id: company.id) }
+    let!(:store) { create :store }
 
     it { should validate_presence_of :street_address }
     it { should validate_presence_of :zip_code }
