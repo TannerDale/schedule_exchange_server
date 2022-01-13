@@ -11,7 +11,7 @@ describe 'User Request' do
     let!(:user) { create :user }
 
     context 'with valid user id' do
-      before { get api_v1_users_path, params: { id: user.id } }
+      before { get api_v1_user_path(user.id) }
 
       it 'returns status code 200' do
         expect(response).to have_http_status 200
@@ -32,7 +32,7 @@ describe 'User Request' do
     context 'with invalid user id' do
       let(:bad_id) { user.id + 1 }
 
-      before { get api_v1_users_path, params: { id: bad_id } }
+      before { get api_v1_user_path(bad_id) }
 
       it 'returns status code 404' do
         expect(response).to have_http_status 404
