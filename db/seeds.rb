@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Company.destroy_all
+Store.destroy_all
 User.destroy_all
 
 ActiveRecord::Base.connection.tables.each do |t|
@@ -18,6 +19,15 @@ comp = Company.create!(
   password: 'happylittletree',
   password_confirmation: 'happylittletree'
 )
+
+[1, 2, 3].each do |num|
+  Store.create!(
+    street_address: "#{num} Road Dr",
+    zip_code: (num.to_s * 5).to_i,
+    store_number: num,
+    company_id: comp.id
+  )
+end
 
 User.create!(
   first_name: 'Bob',
