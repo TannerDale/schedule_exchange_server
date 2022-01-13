@@ -1,4 +1,4 @@
-class Api::V1::StoresController < V1::BaseController
+class Api::V1::StoresController < Api::V1::BaseController
   def index; end
 
   def show; end
